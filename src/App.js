@@ -1,5 +1,5 @@
 import React from 'react';
-import ApiHealth from './components/ApiHealth'
+import ApiHealth from './components/ApiHealth';
 
 function App() {
   return (
