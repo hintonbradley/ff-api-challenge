@@ -60,17 +60,17 @@ class ApiHealth extends React.Component {
         return this.state.apiList.map( (name, i) => {
             if(this.state[name].success){
                 return (
-                    <SuccessApiDetails name={name} api={this.state[name]} time={this.convertUnixTo24Hour(this.state[name].time)}/>
+                    <SuccessApiDetails key={`${name}-s-${i}`} name={name} api={this.state[name]} time={this.convertUnixTo24Hour(this.state[name].time)}/>
                 )    
             } else if (this.state[name].success===null) {
                 return (
-                    <li>
+                    <li key={`loading${i}`}>
                         <p>Loading...</p>
                     </li>
                 )
             } else {
                 return (
-                    < FailedApiDetails name={name}/>
+                    < FailedApiDetails key={`${name}-f-${i}`} name={name} index={i}/>
                 )
             }
         })

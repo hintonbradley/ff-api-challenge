@@ -7,6 +7,16 @@ ul li:nth-child(even) {
     background: #EEE;
 }
 
+ul li:nth-child(2) {
+    margin-top: 60px;
+}
+
+.row-titles {
+    position: fixed;
+    top: 0;
+    background: #fff;
+}
+
 .success {
     background: lightgreen;
     border: 1px solid green;
@@ -70,7 +80,6 @@ p, h3 {
     }
 
     .flex-row {
-        /* display: flex; */
         flex-wrap: wrap;
         justify-content: space-around;
         margin: 25px auto;
