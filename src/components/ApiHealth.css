@@ -1,0 +1,30 @@
+.flex-row {
+    display: flex;
+}
+
+.flex-row h3, .flex-row p {
+    margin: 0;
+    padding: 10px 10px 0 0;
+    width: 200px;
+    height: 25px;
+}
+
+.row-titles {
+    border-bottom: 2px solid black;
+}
+
+.api-name {
+    border-right: 2px solid black;
+}
+
+.flex-row .api-name {
+    width: 100px;
+}
+
+.success {
+    background: lightgreen
+}
+
+.failed {
+    background: salmon;
+}

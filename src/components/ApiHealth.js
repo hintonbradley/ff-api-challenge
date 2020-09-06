@@ -1,5 +1,6 @@
 import React from 'react';
 import api from '../api/api';
+import './ApiHealth.css';
 
 class ApiHealth extends React.Component {
     state = {
@@ -28,45 +29,43 @@ class ApiHealth extends React.Component {
     componentDidMount () {
         this.state.apiList.forEach(name => {
             this.getApiHealth(name)
+            // setInterval( async () => this.getApiHealth(name), this.state.checkApiTimer*1000)
         })
     }
 
-    getApiHealth (name) {
-        setInterval(async () => {
-            try {
-                const resp = await api.get(`https://api.factoryfour.com/${name}/health/status`) 
-                this.setState({ [name]: resp.data})
-            } catch (e) {
-                this.setState({[name]: {success: false}})
-            }
-        }, this.state.checkApiTimer*1000);
+    async getApiHealth (name) {
+        try {
+            const resp = await api.get(`https://api.factoryfour.com/${name}/health/status`) 
+            this.setState({ [name]: resp.data})
+        } catch (e) {
+            this.setState({[name]: {success: false}})
+        }
     }
 
-    renderResponses () {
+    addApiListItems () {
         return this.state.apiList.map( (name, i) => {
-            if(this.state[name].success) {
+            if(this.state[name].success){
                 return (
-                    <div key={this.state[name].hostname}>
-                        <h1>{name}</h1>
-                        <p>Success: {this.state[name].success}</p>
-                        <p>Message: {this.state[name].message}</p>
-                        <p>Hostname: {this.state[name].hostname}</p>
-                        <p>Time: {this.state[name].time}</p>
-                    </div>
+                    <li className="flex-row">
+                        <p className="api-name">{name}</p>
+                        <p className="success">Success</p>
+                        <p>{this.state[name].message}</p>
+                        <p>{this.state[name].hostname}</p>
+                        <p>{this.state[name].time}</p>
+                    </li>
                 )
-            } else if(this.state[name].success === null){
+            } else if (this.state[name].success===null) {
                 return (
-                    <div key={i}>
-                        <h1>{name}</h1>
+                    <li>
                         <p>Loading...</p>
-                    </div>
+                    </li>
                 )
             } else {
                 return (
-                    <div key={i}>
-                        <h1>{name}</h1>
-                        <p>Error 503!</p>
-                    </div>
+                    <li className="flex-row">
+                        <p className="api-name">{name}</p>
+                        < p className="fetch-error failed">Error 503 Service Unavailable</p>
+                    </li>
                 )
             }
         })
@@ -75,7 +74,16 @@ class ApiHealth extends React.Component {
     render () {
         return (
             <div>
-                <div>{this.renderResponses()}</div>
+                <ul>
+                    <li className="flex-row row-titles rows">
+                        <h3 className="api-name">API</h3>
+                        <h3>Status</h3>
+                        <h3>Message</h3>
+                        <h3>Hostname</h3>
+                        <h3>Time</h3>
+                    </li>
+                    {this.addApiListItems()}
+                </ul>
             </div>
         )
     }
