@@ -1,5 +1,7 @@
 import React from 'react';
 import api from '../api/api';
+import SuccessApiDetails from './SuccessApiDetails';
+import FailedApiDetails from './FailedApiDetails';
 import './ApiHealth.css';
 
 class ApiHealth extends React.Component {
@@ -29,7 +31,7 @@ class ApiHealth extends React.Component {
     componentDidMount () {
         this.state.apiList.forEach(name => {
             this.getApiHealth(name)
-            // setInterval( async () => this.getApiHealth(name), this.state.checkApiTimer*1000)
+            setInterval( async () => this.getApiHealth(name), this.state.checkApiTimer*1000)
         })
     }
 
@@ -42,18 +44,24 @@ class ApiHealth extends React.Component {
         }
     }
 
+    convertUnixTo24Hour (n) {
+        const newDate = new Date(n);
+        var hours = newDate.getHours();
+        var minutes = newDate.getMinutes();
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    }
+
     addApiListItems () {
         return this.state.apiList.map( (name, i) => {
             if(this.state[name].success){
                 return (
-                    <li className="flex-row">
-                        <p className="api-name">{name}</p>
-                        <p className="success">Success</p>
-                        <p>{this.state[name].message}</p>
-                        <p>{this.state[name].hostname}</p>
-                        <p>{this.state[name].time}</p>
-                    </li>
-                )
+                    <SuccessApiDetails name={name} api={this.state[name]} time={this.convertUnixTo24Hour(this.state[name].time)}/>
+                )    
             } else if (this.state[name].success===null) {
                 return (
                     <li>
@@ -62,10 +70,7 @@ class ApiHealth extends React.Component {
                 )
             } else {
                 return (
-                    <li className="flex-row">
-                        <p className="api-name">{name}</p>
-                        < p className="fetch-error failed">Error 503 Service Unavailable</p>
-                    </li>
+                    < FailedApiDetails name={name}/>
                 )
             }
         })
@@ -77,10 +82,10 @@ class ApiHealth extends React.Component {
                 <ul>
                     <li className="flex-row row-titles rows">
                         <h3 className="api-name">API</h3>
-                        <h3>Status</h3>
-                        <h3>Message</h3>
-                        <h3>Hostname</h3>
-                        <h3>Time</h3>
+                        <h3 className="api-status">Status</h3>
+                        <h3 className="api-message">Message</h3>
+                        <h3 className="api-hostname">Hostname</h3>
+                        <h3 className="api-time">Time</h3>
                     </li>
                     {this.addApiListItems()}
                 </ul>
