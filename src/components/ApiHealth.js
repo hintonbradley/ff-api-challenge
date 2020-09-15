@@ -36,11 +36,19 @@ class ApiHealth extends React.Component {
     }
 
     async getApiHealth (name) {
+        const config = {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET"
+            }
+        };
         try {
-            const resp = await api.get(`https://api.factoryfour.com/${name}/health/status`) 
+            const resp = await api.get(`/${name}/health/status`, config) 
             this.setState({ [name]: resp.data})
+            console.log('success', name, resp)
         } catch (e) {
             this.setState({[name]: {success: false}})
+            console.log('fail', name, e.status)
         }
     }
 
