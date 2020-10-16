@@ -122,6 +122,6 @@ Once I turned in my project. I received the following feedback:
 
 <em>Hard coded error string - the error response was hardcoded to 503 rather than correctly handling a CORS issue from deliberately failing servers</em>
 
-- Of course I have to hard code the error string. I don't get a response from the API to use, so it obviously needs to be hard coded. And when he says I should have handled a CORS issue - he said in his response that I should "...display the fact that CORS is misconfigured for these APIs as part of the status page". How else am I supposed to display a message if I don't receive one from my API request?
+- Of course I have to hard code the error string. I don't get a response from the API to use, so it obviously needs to be hard coded. And when he says I should have handled a CORS issue - I don't understand why he said this. In his earlier response, he said that I should "...display the fact that CORS is misconfigured for these APIs as part of the status page". I interpreted this as 'displaying an error to notify the user'. Therefore I had to hard code that error. How else am I supposed to display a message if I don't receive an error or any other data from my API request?
 
 Hope this makes sense to you.  If you can take a look, great, otherwise, I think there was some miscommunication from their end as to what specifically they want. (Specs weren't explained correctly). Thanks for any help you can give. 
