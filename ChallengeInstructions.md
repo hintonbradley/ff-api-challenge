@@ -113,12 +113,15 @@ Therefore you can see from my code, whenever I don't receive state.apiName.succe
 Once I turned in my project. I received the following feedback:
 
 <em>Hard-coded unchanging values in state - generally this should be avoided in favor of a fixed local variable or a variable on the class itself</em>
-(I think here he may be referring to my const config variable? Otherwise, I'm not sure what he means.)
+
+- I think here he may be referring to my const config variable? Otherwise, I'm not sure what he means.
 
 <em>State constructed as a literal rather than mapped from ApiList</em>
-(I'll give him this, but I can obviously map items as I do it in other places on this application.)
+
+- I'll give him this, but I can obviously map items as I do it in other places on this application.
 
 <em>Hard coded error string - the error response was hardcoded to 503 rather than correctly handling a CORS issue from deliberately failing servers</em>
-(Of course I have to hard code the error string. I don't get a response from the API to use, so it obviously needs to be hard coded. And when he says I should have handled a CORS issue - he said in his response that I should "...display the fact that CORS is misconfigured for these APIs as part of the status page"). How else am I supposed to display a message if I don't receive one from my API request?
+
+- Of course I have to hard code the error string. I don't get a response from the API to use, so it obviously needs to be hard coded. And when he says I should have handled a CORS issue - he said in his response that I should "...display the fact that CORS is misconfigured for these APIs as part of the status page". How else am I supposed to display a message if I don't receive one from my API request?
 
 Hope this makes sense to you.  If you can take a look, great, otherwise, I think there was some miscommunication from their end as to what specifically they want. (Specs weren't explained correctly). Thanks for any help you can give. 
