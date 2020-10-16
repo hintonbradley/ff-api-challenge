@@ -77,7 +77,7 @@ where API_NAME is one of:
 ### FIRST ATTEMPT:
 After receiving these answers, I worked on the application for a few hours but then came across the CORS error. I asked the following questions to get some clarity:
 
-I seem to be running into an issue when trying to request data from the following apis:
+<em>I seem to be running into an issue when trying to request data from the following apis:
 
 invites
 messages
@@ -88,37 +88,37 @@ Access to XMLHttpRequest at 'https://api.factoryfour.com/users/health/status' fr
 
 I've searched online, and see that generally I need a header when requesting certain apis. I've tried adding a header to my request with a random key:value, but it's obviously not working. Should I be using a specific key value pair in my header?
 
-As far as I can tell, the other apis are working fine and returning either the correct data or an error. Also, when I use a try catch, the error I get back on these three requests is "Error: Network Error". Should I display this error in my UI for these three APIs? If not, would you have any suggestions for me when sending requests to these APIs?
+As far as I can tell, the other apis are working fine and returning either the correct data or an error. Also, when I use a try catch, the error I get back on these three requests is "Error: Network Error". Should I display this error in my UI for these three APIs? If not, would you have any suggestions for me when sending requests to these APIs?</em>
 
 ## RESPONSE
 The response I received was as follows:
 
-Thanks for asking this question! We are aware of the CORS issue on these three APIs and we expect candidates to encounter it.
+<em>Thanks for asking this question! We are aware of the CORS issue on these three APIs and we expect candidates to encounter it.
 
 The gist of the CORS issue isn’t that you (the browser client) need to add extra headers to your request, but that the server actually needs to add those headers to its response. Chrome will block the response if it doesn’t see those headers — but if you use curl, Postman, or another tool to make the requests directly, you will see the response come through clear as day, despite the missing headers.
 
 The way around it in practice is to either upgrade the API server to support CORS, or create a “CORS proxy” middleman server. That’s definitely not required for this challenge! Instead, you can display the fact that CORS is misconfigured for these APIs as part of the status page. Ideally, the UI would be able to distinguish CORS issues from actual server outages, even though the server that’s down won’t be sending CORS headers either.
 
-Thanks for the question, it sounds like progress is being made!
+Thanks for the question, it sounds like progress is being made!</em>
 
 ------------------
 
 ## SECOND ATTEMPT:
 I took his response to mean to that I had two options. I could either get around the CORS issue by incorporating a server (Express) in my application to make those API calls, or instead I could simply display an error whenever I encourtered that CORS issue. Since I didn't want to scrap my project and what I had already done/rewrite it and start over using an Express server, I decided on the latter.
 
-Therefore you can see from my code, whenever I don't receive state[name].success variable, I show an error message stating no data is available. 
+Therefore you can see from my code, whenever I don't receive state.apiName.success variable, I show an error message stating no data is available. 
 
 ## FINAL
 
 Once I turned in my project. I received the following feedback:
 
-Hard-coded unchanging values in state - generally this should be avoided in favor of a fixed local variable or a variable on the class itself
+<em>Hard-coded unchanging values in state - generally this should be avoided in favor of a fixed local variable or a variable on the class itself</em>
 (I think here he may be referring to my const config variable? Otherwise, I'm not sure what he means.)
 
-State constructed as a literal rather than mapped from ApiList
+<em>State constructed as a literal rather than mapped from ApiList</em>
 (I'll give him this, but I can obviously map items as I do it in other places on this application.)
 
-Hard coded error string - the error response was hardcoded to 503 rather than correctly handling a CORS issue from deliberately failing servers
+<em>Hard coded error string - the error response was hardcoded to 503 rather than correctly handling a CORS issue from deliberately failing servers</em>
 (Of course I have to hard code the error string. I don't get a response from the API to use, so it obviously needs to be hard coded. And when he says I should have handled a CORS issue - he said in his response that I should "...display the fact that CORS is misconfigured for these APIs as part of the status page"). How else am I supposed to display a message if I don't receive one from my API request?
 
 Hope this makes sense to you.  If you can take a look, great, otherwise, I think there was some miscommunication from their end as to what specifically they want. (Specs weren't explained correctly). Thanks for any help you can give. 
