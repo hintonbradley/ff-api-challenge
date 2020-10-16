@@ -59,20 +59,19 @@ where API_NAME is one of:
 
 ### QUESTIONS I HAD (WITH ANSWERS):
 1. For this project, you want all the API health statuses displayed on one single page at the same time, right? (as long as it refreshes the data every 15 seconds and also includes the 503 error for that particular API).  Or if I'm mistaken, should the user have the ability to select which results to view from ONE api at a time?
-Answer: Yes! The user should be able to see all of the APIs' most recent statuses together on a single page.
+- Answer: Yes! The user should be able to see all of the APIs' most recent statuses together on a single page.
 
 2. Is it safe to assume the status page should be responsive and should be viewable on mobile, tablet and desktop devices?
-
-Answer: The user's choice of device should not impede their ability to use the app, but there's no need to worry about handling transitions between different screen sizes.
+- Answer: The user's choice of device should not impede their ability to use the app, but there's no need to worry about handling transitions between different screen sizes.
 
 3. I assume since the page is going to be checking the status every 15 seconds that you only want the most recent data viewable on the page for each API. If you'd rather have a list or results for each, please let me know. (i.e. 0 seconds ago, 15, seconds ago, 30 seconds ago...etc.)
-Answer: Only the most recent status check needs to be displayed at any given time.
+- Answer: Only the most recent status check needs to be displayed at any given time.
 
 4. For the 503 error  - is there anything in addition to "503 Service Unavailable" that you'd like to be displayed?
-Answer: Text-wise, just relaying the message returned from the server is sufficient, but it's up to you to choose how to present or highlight it visually.
+- Answer: Text-wise, just relaying the message returned from the server is sufficient, but it's up to you to choose how to present or highlight it visually.
 
 5. For the time value that is returned, I see the result is in Pacific time. Should I account for updating the result for users not in the Pacific Daylight Time zone? i.e. should I ask permission to access the user's location so I can present the time in their time zone?
-Answer: The time value returned is a Unix timestamp in milliseconds, time-zone agnostic. In terms of formatting, browsers should already be aware of the user's time zone -- no need to ask for location permissions!
+- Answer: The time value returned is a Unix timestamp in milliseconds, time-zone agnostic. In terms of formatting, browsers should already be aware of the user's time zone -- no need to ask for location permissions!
 
 
 ### FIRST ATTEMPT:
