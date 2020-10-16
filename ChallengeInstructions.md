@@ -62,7 +62,7 @@ where API_NAME is one of:
 Answer: Yes! The user should be able to see all of the APIs' most recent statuses together on a single page.
 
 2. Is it safe to assume the status page should be responsive and should be viewable on mobile, tablet and desktop devices?
-Answer: The user's choice of device should not impede their ability to use the app, but there's no need to worry about handling transitions between different screen sizes.
+- Answer: The user's choice of device should not impede their ability to use the app, but there's no need to worry about handling transitions between different screen sizes.
 
 3. I assume since the page is going to be checking the status every 15 seconds that you only want the most recent data viewable on the page for each API. If you'd rather have a list or results for each, please let me know. (i.e. 0 seconds ago, 15, seconds ago, 30 seconds ago...etc.)
 Answer: Only the most recent status check needs to be displayed at any given time.
